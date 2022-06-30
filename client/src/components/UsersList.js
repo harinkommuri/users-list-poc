@@ -12,9 +12,6 @@ import Paper from '@mui/material/Paper';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import { visuallyHidden } from '@mui/utils';
-import dashboardTableConfig from '../config/dashboard-table.config';
-import Address from './Address';
-import Company from './Company';
 import IconButton from '@mui/material/IconButton';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -23,6 +20,9 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { setUsersList, removeFromList } from "../redux/reducers/users";
 import usersService from "../services/users";
+import dashboardTableConfig from '../config/dashboard-table.config';
+import Address from './Address';
+import Company from './Company';
 
 const style = {
   position: 'absolute',
@@ -131,15 +131,6 @@ function EnhancedTable(props) {
     setOrderBy(property);
   };
 
-  const handleSelectAllClick = (event) => {
-    if (event.target.checked) {
-      const newSelecteds = users.map((n) => n.name);
-      setSelected(newSelecteds);
-      return;
-    }
-    setSelected([]);
-  };
-
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -187,7 +178,6 @@ function EnhancedTable(props) {
                 numSelected={selected.length}
                 order={order}
                 orderBy={orderBy}
-                onSelectAllClick={handleSelectAllClick}
                 onRequestSort={handleRequestSort}
                 rowCount={users.length}
               />
